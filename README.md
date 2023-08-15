@@ -1,42 +1,16 @@
-# Nuxt 3 Minimal Starter
+# cson
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Progressive Web App to convert between JSON and CSV formats privately, with offline support. No ads, no tracking and no data sent anywhere.
 
-## Setup
+## CSV Support:
 
-Make sure to install the dependencies:
+* Comma delimited
+* Semicolon delimited
+* Tab delimited
 
-```bash
-# yarn
-yarn install
+## JSON Support:
 
-# npm
-npm install
+* Prettified output
+* Minified output
 
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Made using [Nuxt 3](https://nuxt.com).
