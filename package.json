@@ -8,9 +8,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@pinia/nuxt": "^0.4.11",
     "@rushstack/eslint-patch": "^1.2.0",
-    "@types/lodash-es": "^4.17.8",
+    "@types/file-saver": "^2.0.5",
+    "@types/papaparse": "^5.3.7",
     "@vite-pwa/nuxt": "^0.1.0",
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
@@ -24,14 +24,15 @@
     "prettier": "^3.0.1",
     "pug": "^3.0.2",
     "sass": "^1.57.1",
-    "typescript": "^5.1.6",
-    "workbox-window": "^7.0.0"
+    "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@sindresorhus/is": "^5.6.0",
     "@vueuse/core": "^10.3.0",
     "@vueuse/nuxt": "^10.3.0",
     "bootstrap": "5.3.1",
-    "lodash-es": "^4.17.21"
+    "file-saver": "^2.0.5",
+    "fracturedjsonjs": "^3.1.0",
+    "papaparse": "^5.4.1",
+    "promise-file-reader": "^1.0.3"
   }
 }

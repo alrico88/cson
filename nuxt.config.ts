@@ -1,11 +1,11 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "nuxt3-boilerplate",
+      title: "cson - Convert between JSON and CSV",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "theme-color", content: "#212121" },
+        { name: "theme-color", content: "#dbeafe" },
       ],
       htmlAttrs: {
         "data-bs-theme": "light",
@@ -13,36 +13,26 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/main.scss"],
-  modules: [
-    "nuxt-icon",
-    "@vueuse/nuxt",
-    [
-      "@pinia/nuxt",
-      {
-        autoImports: ["defineStore", "storeToRefs"],
-      },
-    ],
-    "@vite-pwa/nuxt",
-  ],
+  modules: ["nuxt-icon", "@vueuse/nuxt", "@vite-pwa/nuxt"],
   pwa: {
     registerType: "prompt",
     manifest: {
-      name: "nuxt3-boilerplate",
-      description: "CHANGE THIS",
-      theme_color: "white",
+      name: "cson",
+      description: "Convert between JSON and CSV formats",
+      theme_color: "#dbeafe",
       icons: [
         {
-          src: "pwa-192x192.png",
+          src: "pwa-192.png",
           sizes: "192x192",
           type: "image/png",
         },
         {
-          src: "pwa-512x512.png",
+          src: "pwa-512.png",
           sizes: "512x512",
           type: "image/png",
         },
         {
-          src: "pwa-512x512.png",
+          src: "pwa-512.png",
           sizes: "512x512",
           type: "image/png",
           purpose: "any maskable",
@@ -57,5 +47,19 @@ export default defineNuxtConfig({
       globPatterns: ["**/*.{js,css,html,png,svg,ico,woff,woff2}"],
       cleanupOutdatedCaches: true,
     },
+  },
+  routeRules: {
+    "/": {
+      static: true,
+    },
+    "/json-to-csv": {
+      static: true,
+    },
+    "/csv-to-json": {
+      static: true,
+    },
+  },
+  experimental: {
+    payloadExtraction: true,
   },
 });
