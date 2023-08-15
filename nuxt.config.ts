@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@vite-pwa/nuxt",
     "nuxt-simple-sitemap",
+    "@nuxtjs/google-fonts",
   ],
   pwa: {
     registerType: "prompt",
@@ -70,5 +71,10 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: true,
+  },
+  googleFonts: {
+    families: {
+      "Source Sans Pro": [400, 600, 800],
+    },
   },
 });

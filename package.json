@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.0.2",
     "@rushstack/eslint-patch": "^1.2.0",
     "@types/file-saver": "^2.0.5",
     "@types/papaparse": "^5.3.7",
