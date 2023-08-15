@@ -17,7 +17,12 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/main.scss"],
-  modules: ["nuxt-icon", "@vueuse/nuxt", "@vite-pwa/nuxt"],
+  modules: [
+    "nuxt-icon",
+    "@vueuse/nuxt",
+    "@vite-pwa/nuxt",
+    "nuxt-simple-sitemap",
+  ],
   pwa: {
     registerType: "prompt",
     manifest: {
