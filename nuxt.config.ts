@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       ],
       htmlAttrs: {
         "data-bs-theme": "light",
+        lang: "en",
       },
     },
   },

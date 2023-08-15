@@ -7,7 +7,7 @@ footer.bg-sky.py-3
           li.list-inline-item #[icon(name="bi:person")] Created by #[nuxt-link(to="https://alrico.es" v-bind="linkAttrs") Alberto Rico]
           li.list-inline-item #[icon(name="bi:github")] Code on #[nuxt-link(:to="repoLink" v-bind="linkAttrs") Github]
           li.list-inline-item
-            button.btn.btn-link(
+            button.btn.btn-link.p-0(
               v-if="$pwa?.needRefresh"
               @click="$pwa?.updateServiceWorker()"
             ) #[icon(name="bi:repeat")] Update available
