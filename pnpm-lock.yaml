@@ -13,6 +13,9 @@ dependencies:
   file-saver:
     specifier: ^2.0.5
     version: 2.0.5
+  flat:
+    specifier: ^5.0.2
+    version: 5.0.2
   fracturedjsonjs:
     specifier: ^3.1.0
     version: 3.1.0
@@ -33,6 +36,9 @@ devDependencies:
   '@types/file-saver':
     specifier: ^2.0.5
     version: 2.0.5
+  '@types/flat':
+    specifier: ^5.0.2
+    version: 5.0.2
   '@types/papaparse':
     specifier: ^5.3.7
     version: 5.3.7
@@ -2488,6 +2494,10 @@ packages:
 
   /@types/file-saver@2.0.5:
     resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
+  /@types/flat@5.0.2:
+    resolution: {integrity: sha512-3zsplnP2djeps5P9OyarTxwRpMLoe5Ash8aL9iprw0JxB+FAHjY+ifn4yZUuW4/9hqtnmor6uvjSRzJhiVbrEQ==}
     dev: true
 
   /@types/http-proxy@1.17.11:

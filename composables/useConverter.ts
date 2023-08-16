@@ -1,4 +1,5 @@
 import papa, { ParseResult } from "papaparse";
+import flatten from "flat";
 
 export enum Delimiter {
   Comma = ",",
@@ -16,11 +17,14 @@ export function useConverter() {
   }
 
   function jsonToCsv(json: unknown[], delimiter: Delimiter): string {
-    return papa.unparse(json, {
-      header: true,
-      skipEmptyLines: true,
-      delimiter,
-    });
+    return papa.unparse(
+      json.map((d) => flatten(d)),
+      {
+        header: true,
+        skipEmptyLines: true,
+        delimiter,
+      },
+    );
   }
 
   return {

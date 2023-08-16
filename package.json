@@ -21,6 +21,7 @@
     "@nuxtjs/google-fonts": "^3.0.2",
     "@rushstack/eslint-patch": "^1.2.0",
     "@types/file-saver": "^2.0.5",
+    "@types/flat": "^5.0.2",
     "@types/papaparse": "^5.3.7",
     "@vite-pwa/nuxt": "^0.1.0",
     "@vue/eslint-config-prettier": "^8.0.0",
@@ -43,6 +44,7 @@
     "@vueuse/nuxt": "^10.3.0",
     "bootstrap": "5.3.1",
     "file-saver": "^2.0.5",
+    "flat": "^5.0.2",
     "fracturedjsonjs": "^3.1.0",
     "papaparse": "^5.4.1",
     "promise-file-reader": "^1.0.3"
