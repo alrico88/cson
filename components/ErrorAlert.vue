@@ -1,7 +1,7 @@
 <template lang="pug">
 .alert.alert-danger.mb-0
-  .vstack.gap-2
-    h5.fw-bold #[icon(name="bi:exclamation-triangle")] Errors found
+  h5.fw-bold #[icon(name="bi:exclamation-triangle")] Errors found
+  .vstack.gap-2.max-height
     div(v-for="item of error") {{ item }}
 </template>
 
@@ -11,4 +11,9 @@ const props = defineProps<{
 }>();
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.max-height {
+  max-height: 200px;
+  overflow-y: auto;
+}
+</style>

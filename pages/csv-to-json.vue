@@ -1,5 +1,5 @@
 <template lang="pug">
-.container.h-100
+.container-fluid
   .row.row-cols-1.row-cols-md-2.g-4
     .col
       the-input(
@@ -48,9 +48,13 @@ function convert() {
   try {
     error.value = [];
 
-    const asStr = csvToJson(input.value);
+    const parsed = csvToJson(input.value);
 
-    output.value = minify.value ? JSON.stringify(asStr) : prettyJson(asStr);
+    output.value = minify.value
+      ? JSON.stringify(parsed.data)
+      : prettyJson(parsed.data);
+
+    error.value = parsed.errors.map((err) => JSON.stringify(err));
   } catch (err) {
     error.value = err as string[];
   }

@@ -11,14 +11,23 @@
       readonly
     )
   .hstack.gap-2
-    button.btn.btn-success(
+    button.btn.btn-success.text-nowrap(
       @click="copyToClip",
       :disabled="copied || outputBtnsDisabled"
     ) #[icon(name="bi:clipboard")] {{ copied ? 'Copied' : 'Copy to clipboard' }}
-    button.btn.btn-success(
-      @click="download",
-      :disabled="outputBtnsDisabled"
-    ) #[icon(name="bi:save")] Download as file
+    form.w-100(@submit.prevent="() => download()")
+      .input-group
+        input.form-control(
+          type="text", 
+          v-model="filename", 
+          :class="{'is-invalid': emptyFilename}", 
+          required
+        )
+        .input-group-text .{{ format }}
+        button.btn.btn-success(
+          type="submit"
+          :disabled="outputBtnsDisabled"
+        ) #[icon(name="bi:save")] Download #[span.d-none.d-xl-inline as file]
 </template>
 
 <script setup lang="ts">
@@ -28,16 +37,20 @@ const props = defineProps<{
   format: "json" | "csv";
 }>();
 
-const outputBtnsDisabled = computed(() => props.output === "");
-
 const { copy, copied } = useClipboard();
 const { downloadAsFile } = useDownload();
+
+const filename = ref("cson");
+const emptyFilename = computed(() => filename.value === "");
+const outputBtnsDisabled = computed(
+  () => props.output === "" || emptyFilename.value,
+);
 
 function copyToClip() {
   copy(props.output);
 }
 
 function download() {
-  downloadAsFile("cson", props.format, props.output);
+  downloadAsFile(filename.value, props.format, props.output);
 }
 </script>

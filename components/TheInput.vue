@@ -1,9 +1,13 @@
 <template lang="pug">
+input.d-none#fileInput(type="file", @change="handleFileLoad")
 .vstack.gap-3
   .form-group
     .hstack.gap-2.justify-content-between.align-items-center.mb-2
       label.form-label.mb-0.fw-bold(for="input") {{ isOverDropZone ? 'Drop the file' : `Paste a ${format} below or drag and drop a file` }}
-      button.btn.btn-link.p-0(@click="loadExample") Load example
+      div
+        .hstack.gap-2
+          button.btn.btn-link.p-0(@click="openFile") #[icon(name="material-symbols:file-open-outline-sharp")] Load file
+          button.btn.btn-link.p-0(@click="loadExample") #[icon(name="ic:outline-contact-support")] Load example
     textarea.form-control#input(
       :rows="rows",
       :spellcheck="false",
@@ -39,16 +43,26 @@ const emit = defineEmits<{
 const selectedInput = useVModel(props, "input");
 const convertDisabled = computed(() => selectedInput.value === "");
 
-watch(selectedInput, () => {
-  emit("reset");
-});
+debouncedWatch(
+  selectedInput,
+  () => {
+    emit("reset");
+  },
+  {
+    debounce: 100,
+  },
+);
 
 const dropZoneRef = templateRef<HTMLElement>("dropzoneRef");
 
-const { isOverDropZone } = useDropZone(dropZoneRef, async (files) => {
+async function processFile(files: File[] | null): Promise<void> {
   if (Array.isArray(files) && files[0] != null) {
     selectedInput.value = await readAsText(files[0]);
   }
+}
+
+const { isOverDropZone } = useDropZone(dropZoneRef, (files) => {
+  processFile(files);
 });
 
 function clear() {
@@ -57,5 +71,19 @@ function clear() {
 
 function loadExample() {
   selectedInput.value = props.example;
+}
+
+function openFile() {
+  document.getElementById("fileInput")?.click();
+}
+
+function handleFileLoad(event: Event) {
+  const file = (event.target as HTMLInputElement).files;
+
+  if (!file) {
+    return [];
+  }
+
+  processFile([file[0]]);
 }
 </script>

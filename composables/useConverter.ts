@@ -1,4 +1,4 @@
-import papa from "papaparse";
+import papa, { ParseResult } from "papaparse";
 
 export enum Delimiter {
   Comma = ",",
@@ -7,18 +7,12 @@ export enum Delimiter {
 }
 
 export function useConverter() {
-  function csvToJson(csv: string): unknown[] {
-    const parsed = papa.parse(csv, {
+  function csvToJson(csv: string): ParseResult<unknown> {
+    return papa.parse(csv, {
       header: true,
       skipEmptyLines: true,
       dynamicTyping: true,
     });
-
-    if (parsed.errors.length > 0) {
-      throw parsed.errors;
-    }
-
-    return parsed.data;
   }
 
   function jsonToCsv(json: unknown[], delimiter: Delimiter): string {

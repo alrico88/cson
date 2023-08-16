@@ -1,8 +1,8 @@
 <template lang="pug">
-.d-flex.vh-100.flex-column.w-100.flex-shrink-0
-  .bg-sky
-    .container.text-center
-      .row.justify-content-center.py-3
+.container-lg
+  .row.min-vh-100.align-items-center
+    .col
+      .row.text-center.justify-content-center.py-3
         .col-md-6
           h1.fw-bold
             nuxt-link.link-unstyled(to="/") CSON
@@ -16,9 +16,12 @@
               :to="nav.link",
               exact-active-class="active"
             ) {{ nav.text }}
-  .py-4
-    slot
-  the-footer.mt-auto
+      .row.py-3
+        .col
+          .card
+            .card-body
+              slot
+      the-footer
 </template>
 
 <script setup lang="ts">

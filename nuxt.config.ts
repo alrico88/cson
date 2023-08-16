@@ -5,7 +5,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "theme-color", content: "#dbeafe" },
+        { name: "theme-color", content: "#f8fcee" },
         {
           name: "google-site-verification",
           content: "nc0pKffQdhm679g_eXEQhjK-NzBM8ZbyFQLR9ZMeJtc",
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     manifest: {
       name: "cson",
       description: "Convert between JSON and CSV formats",
-      theme_color: "#dbeafe",
+      theme_color: "#f8fcee",
       icons: [
         {
           src: "pwa-192.png",
@@ -76,6 +76,10 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       "Source Sans Pro": [400, 600, 800],
+      Pacifico: [400],
     },
+  },
+  site: {
+    url: "https://cson.vercel.app",
   },
 });

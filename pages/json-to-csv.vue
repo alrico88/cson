@@ -1,5 +1,5 @@
 <template lang="pug">
-.container.h-100
+.container-fluid
   .row.row-cols-1.row-cols-md-2.g-4
     .col
       the-input(
