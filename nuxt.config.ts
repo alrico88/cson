@@ -72,6 +72,7 @@ export default defineNuxtConfig({
   },
   experimental: {
     payloadExtraction: true,
+    headNext: true,
   },
   googleFonts: {
     families: {
