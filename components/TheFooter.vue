@@ -3,15 +3,14 @@ footer.bg-sky.py-3
   .container.text-center
     .row
       .col
-        ul.list-inline.mb-0
-          li.list-inline-item #[icon(name="bi:person")] Created by #[nuxt-link(to="https://alrico.es" v-bind="linkAttrs") Alberto Rico]
-          li.list-inline-item #[icon(name="bi:github")] Code on #[nuxt-link(:to="repoLink" v-bind="linkAttrs") Github]
-          li.list-inline-item #[icon(name="ep:coffee")] Found it useful? #[nuxt-link(:to="donateLink", v-bind="linkAttrs") Support me!]
-          li.list-inline-item
-            button.btn.btn-link.p-0(
-              v-if="$pwa?.needRefresh"
-              @click="$pwa?.updateServiceWorker()"
-            ) #[icon(name="bi:repeat")] Update available
+        .vstack.gap-3
+          ul.list-inline.mb-0
+            li.list-inline-item #[icon(name="bi:person")] Created by #[nuxt-link(to="https://alrico.es" v-bind="linkAttrs") Alberto Rico]
+            li.list-inline-item #[icon(name="bi:github")] Code on #[nuxt-link(:to="repoLink" v-bind="linkAttrs") Github]
+            li.list-inline-item #[icon(name="ep:coffee")] Found it useful? #[nuxt-link(:to="donateLink", v-bind="linkAttrs") Support me!]
+            li.list-inline-item
+          div(v-if="$pwa?.needRefresh")
+            button.btn.btn-warning(@click="$pwa?.updateServiceWorker()") #[icon(name="bi:repeat")] Update available
 </template>
 
 <script setup>
