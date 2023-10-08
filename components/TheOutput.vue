@@ -4,12 +4,13 @@
     .hstack.gap-2.justify-content-between.align-items-center.mb-2
       label.form-label.mb-0.fw-bold(for="output") Result
       slot(name="additionalOptions")
-    textarea.form-control#output(
-      :rows="rows",
-      :spellcheck="false",
-      :value="output",
-      readonly
-    )
+    .code-input
+      codemirror#output(
+        v-model="val",
+        :extensions="extensions",
+        :style="style",
+        disabled
+      )
   .hstack.gap-2
     button.btn.btn-success.text-nowrap(
       @click="copyToClip",
@@ -31,14 +32,21 @@
 </template>
 
 <script setup lang="ts">
+import { Codemirror } from "vue-codemirror";
+import { Format } from "~/enums/format";
+
 const props = defineProps<{
   output: string;
-  rows: number;
-  format: "json" | "csv";
+  format: Format;
 }>();
+
+const fmt = toRef(props, "format");
+const val = toRef(props, "output");
 
 const { copy, copied } = useClipboard();
 const { downloadAsFile } = useDownload();
+
+const { extensions, style } = useCode(fmt);
 
 const filename = ref("cson");
 const emptyFilename = computed(() => filename.value === "");

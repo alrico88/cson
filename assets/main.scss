@@ -61,3 +61,11 @@ h1 {
     0px 20px 15px rgba(8, 18, 15, 0.03),
     0px 32px 24px rgba(8, 18, 15, 0.02);
 }
+
+.code-input {
+  height: 300px;
+
+  .cm-editor {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+  }
+}

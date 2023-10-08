@@ -6,13 +6,12 @@
         v-model:input="input", 
         @convert="convert",
         @reset="reset", 
-        format="CSV", 
-        :rows="rows",
+        :format="Format.CSV", 
         :error="error",
         :example="csvExample"
       )
     .col
-      the-output(:output="output", :rows="rows", format="json")
+      the-output(:output="output", :format="Format.JSON")
         template(#additionalOptions)
           .form-check
             input.form-check-input#minify(type="checkbox", v-model="minify")
@@ -20,6 +19,8 @@
 </template>
 
 <script setup lang="ts">
+import { Format } from "~/enums/format";
+
 useHead({
   title: "CSON - Convert CSV to JSON",
   meta: [
@@ -41,8 +42,6 @@ const input = ref("");
 const output = ref("");
 const error = ref<string[]>([]);
 const minify = ref(false);
-
-const rows = 15;
 
 function convert() {
   try {

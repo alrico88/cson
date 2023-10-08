@@ -6,13 +6,12 @@
         v-model:input="input", 
         @convert="convert", 
         @reset="reset",
-        format="JSON", 
-        :rows="rows",
+        :format="Format.JSON", 
         :error="error",
         :example="jsonExample"
       )
     .col
-      the-output(:output="output", :rows="rows", format="csv")
+      the-output(:output="output", :format="Format.CSV")
         template(#additionalOptions)
           div
             .form-check.form-check-inline
@@ -27,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import { Format } from "~/enums/format";
+
 useHead({
   title: "CSON - Convert JSON to CSV",
   meta: [
@@ -48,8 +49,6 @@ const input = ref("");
 const output = ref("");
 const error = ref<string[]>([]);
 const delimiter = ref(Delimiter.Comma);
-
-const rows = 15;
 
 function convert() {
   try {

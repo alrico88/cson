@@ -8,13 +8,14 @@ input.d-none#fileInput(type="file", @change="handleFileLoad")
         .hstack.gap-2
           button.btn.btn-link.p-0(@click="openFile") #[icon(name="material-symbols:file-open-outline-sharp")] Load file
           button.btn.btn-link.p-0(@click="loadExample") #[icon(name="ic:outline-contact-support")] Load example
-    textarea.form-control#input(
-      :rows="rows",
-      :spellcheck="false",
-      v-model="selectedInput",
-      ref="dropzoneRef",
-      :class="{'is-invalid': error.length > 0}"
-    )
+    .code-input
+      codemirror#input(
+        v-model="selectedInput",
+        :extensions="extensions",
+        :style="style",
+        ref="dropzoneRef",
+        :class="{'is-invalid': error.length > 0}"
+      )
   error-alert(v-if="error.length > 0", :error="error")
   .hstack.gap-2
     button.btn.btn-primary(
@@ -26,11 +27,12 @@ input.d-none#fileInput(type="file", @change="handleFileLoad")
 
 <script setup lang="ts">
 import { readAsText } from "promise-file-reader";
+import { Codemirror } from "vue-codemirror";
+import { Format } from "~/enums/format";
 
 const props = defineProps<{
   input: string;
-  format: string;
-  rows: number;
+  format: Format;
   error: string[];
   example: string;
 }>();
@@ -42,6 +44,9 @@ const emit = defineEmits<{
 
 const selectedInput = useVModel(props, "input");
 const convertDisabled = computed(() => selectedInput.value === "");
+
+const fmt = toRef(props, "format");
+const { extensions, style } = useCode(fmt);
 
 debouncedWatch(
   selectedInput,
