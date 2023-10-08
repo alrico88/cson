@@ -1,10 +1,6 @@
-import { Formatter } from "fracturedjsonjs";
-
 export function useJson() {
   function prettyJson(json: unknown[]): string {
-    const f = new Formatter();
-
-    return f.Serialize(json) as string;
+    return JSON.stringify(json, null, 2);
   }
 
   function parseJson(jsonString: string): unknown[] {

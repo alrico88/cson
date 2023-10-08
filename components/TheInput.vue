@@ -3,11 +3,14 @@ input.d-none#fileInput(type="file", @change="handleFileLoad")
 .vstack.gap-3
   .form-group
     .hstack.gap-2.justify-content-between.align-items-center.mb-2
-      label.form-label.mb-0.fw-bold(for="input") {{ isOverDropZone ? 'Drop the file' : `Paste a ${format} below or drag and drop a file` }}
+      label.form-label.mb-0.fw-bold.text-truncate(
+        :title="labelText",
+        for="input"
+      ) {{ labelText }}
       div
         .hstack.gap-2
-          button.btn.btn-link.p-0(@click="openFile") #[icon(name="material-symbols:file-open-outline-sharp")] Load file
-          button.btn.btn-link.p-0(@click="loadExample") #[icon(name="ic:outline-contact-support")] Load example
+          button.btn.btn-link.p-0.text-nowrap(@click="openFile") #[icon(name="material-symbols:file-open-outline-sharp")] Load file
+          button.btn.btn-link.p-0.text-nowrap(@click="loadExample") #[icon(name="ic:outline-contact-support")] Load example
     .code-input
       codemirror#input(
         v-model="selectedInput",
@@ -47,6 +50,12 @@ const convertDisabled = computed(() => selectedInput.value === "");
 
 const fmt = toRef(props, "format");
 const { extensions, style } = useCode(fmt);
+
+const labelText = computed(() =>
+  isOverDropZone.value
+    ? "Drop the file"
+    : `Paste a ${fmt.value.toUpperCase()} below or drag and drop a file`,
+);
 
 debouncedWatch(
   selectedInput,
